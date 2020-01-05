@@ -21,6 +21,7 @@
 		<div class="layui-row">
 			<div class="layui-col-md12 layui-hide-xs xs-hide"></div>
 			<div class="layui-col-md4 layui-col-md-offset4 login-main">
+
 				<img src="http://www.muzhuangnet.com/upload/201610/17/201610171329086541.png" class="logo">
 				<div class="main formbox">
 					<form action="<%=host%>/admin/login" method="post" accept-charset="utf-8" class="layui-form">
@@ -36,17 +37,15 @@
 						<div class="margin20"></div>
 						<div class="inputbox">
 							<input type="text" name="cap" required lay-verify="required" placeholder="请输入验证码" autocomplete="off" class="layui-input">
-							<span id='captcha'
-								style='background: url("<%=host%>/admin/captcha?time=<%=  new Date().getTime()%>") no-repeat; width: 130px; '  
-								alt="点击验证码可刷新" 
-								class="vierfy-code">
+							<span id='captcha' style='background: url("<%=host%>/admin/captcha?time=<%=  new Date().getTime()%>") no-repeat; width: 130px; '
+							 alt="点击验证码可刷新" class="vierfy-code">
 							</span>
 							<i class="l"></i>
 						</div>
 
 						<div class="inputbox info">
 							<input type="checkbox" name="checkbox" lay-skin="primary" checked />
-							我已阅读并同意<a href="javascript:;">用户协议</a>和<a href="javascript:;">隐私条款</a>
+							我已阅读并同意<a href="javascript:;" style='color: blueviolet'>用户协议</a>和<a href="javascript:;" style='color: blueviolet'>隐私条款</a>
 						</div>
 
 						<div class="layui-row layui-col-space20 bts">
@@ -69,12 +68,20 @@
 </body>
 <script src="<%=host%>/layui/layui.all.js"></script>
 <script>
-	let cap =	document.getElementById('captcha')
+	let cap = document.getElementById('captcha')
 	cap.onclick = (e) => {
 		let url = 'url(' + '<%=host%>/admin/captcha?time=' + new Date().getTime() + ')'
-		
+
 		e.target.style.backgroundImage = url
 	}
+
+</script>
+<script>
+ let msg = '<%=errmsg%>'
+ if(msg) {
+	 layer.msg(msg)
+ }
+
 </script>
 <script>
 

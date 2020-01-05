@@ -10,7 +10,8 @@ let router = new Router()
 
 router.get('/login', async ctx => {
   await ctx.render('admin/login', {
-    host: ctx.HOST
+    host: ctx.HOST,
+    errmsg: ctx.query.errmsg
   })
 })
 
@@ -36,36 +37,39 @@ router.post('/login', async ctx => {
   let db_cap = await ctx.db.query(`SELECT cap FROM captcha WHERE token=${ctx.session.tokenTime}`)
   
   if (cap != db_cap[0].cap) {
-    ctx.body = '验证码有误'
+    ctx.redirect(`${ctx.HOST}/admin/login?errmsg=${encodeURIComponent('验证码有误')}`)
   } else {
 
     let userInfo = admin.filter(item => {
       return item.username == user
     })[0]
     if (!userInfo) {
-      ctx.body = '该用户不存在'
+      ctx.redirect(`${ctx.HOST}/admin/login?errmsg=${encodeURIComponent('用户不存在')}`)
     } else {
-      ctx.body = userInfo.password === result ? '欢迎登陆' : '密码错误'
+      if (userInfo.password === result) {
+        ctx.session.role = userInfo.role
+        ctx.redirect(`${ctx.HOST}/admin/admin`)
+      } else {
+        ctx.redirect(`${ctx.HOST}/admin/login?errmsg=${encodeURIComponent('密码错误')}`)
+      }
     }
   }
 
   await ctx.db.query(`DELETE  FROM captcha  WHERE token=${ctx.session.tokenTime}`)
-
-
-
-
 })
 
-router.all('*', async ctx => {
-  if (ctx.session.captcha) {
+router.all('*', async (ctx, next) => {
+  if (ctx.session.role) {
     await next()
   } else {
-    ctx.redirect('admin, login', {})
+    ctx.redirect(`${ctx.HOST}/admin/login`)
   }
 })
 
-router.get('banner', async ctx => {
-  ctx.render('admin/admin', {})
+router.get('/admin', async ctx => {
+  await ctx.render('admin/admin', {
+   host: ctx.HOST
+ })
 })
 
 module.exports = router.routes()

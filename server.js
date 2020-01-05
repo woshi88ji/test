@@ -42,6 +42,7 @@ router.use(async (ctx, next) => {
   try{
     await next()
   } catch (e) {
+    console.log(e)
     ctx.throw(500, 'cuo le ')
   }
 })
