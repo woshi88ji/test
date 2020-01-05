@@ -6,10 +6,11 @@ const body = require('koa-better-body')
 const session = require('koa-session')
 const fs = require('fs')
 const ejs = require('koa-ejs')
+const {HOST} = require('./config')
 
 // 创建服务, 端口8080
 const app = new Koa()
-app.listen(2020)
+app.listen(8080)
 
 // 设置上传文件目录
 app.use(body({
@@ -52,5 +53,7 @@ static(router)
 
 // 数据库
 app.context.db = require('./libs/database')
+
+app.context.HOST = HOST
 
 app.use(router.routes())

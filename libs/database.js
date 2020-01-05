@@ -6,7 +6,7 @@ let coon = mysql.createPool({
   host: DB.DB_HOST,
   user: DB.DB_USER,
   password: DB.DB_PASS,
-  name: DB.DB_NAME
+  database: DB.DB_NAME
 
 })
 

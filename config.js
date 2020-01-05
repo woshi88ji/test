@@ -5,5 +5,6 @@ module.exports = {
     DB_PASS: '',
     DB_NAME: '20200104'
   },
-  suffix: 'liu294859'
+  suffix: 'liu294859',
+  HOST: 'http://localhost:8080'
 }
