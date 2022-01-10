@@ -1,0 +1,102 @@
+{
+  "templateName": "测试",
+  "templateId": "sdfdsfsd",
+  "templateData": [
+    {
+      "type": "input",
+      "key": "1",
+      "label": "表单1",
+      "name": "input1",
+      "options": {},
+      "rules": [
+        {
+          "required": true,
+          "message": "请输入"
+        },
+        {
+          "reg": "\\d",
+          "message": "sdfds"
+        }
+      ],
+      "hidden": [
+        [
+          {
+            "key": "input2",
+            "condition": [
+              {
+                "pattern": "2"
+              }
+            ]
+          },
+          {
+            "key": "input4",
+            "condition": [
+              {
+                "pattern": "4"
+              }
+            ]
+          }
+        ],
+        {
+          "key": "input3",
+          "condition": [
+            {
+              "pattern": "3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "input",
+      "key": "2",
+      "label": "表单2",
+      "name": "input2",
+      "options": {},
+      "rules": [
+        {
+          "required": true,
+          "message": "请输入"
+        },
+        {
+          "reg": "\\d",
+          "message": "sdfds"
+        }
+      ]
+    },
+    {
+      "type": "input",
+      "key": "3",
+      "label": "表单3",
+      "name": "input3",
+      "options": {},
+      "rules": [
+        {
+          "required": true,
+          "message": "请输入"
+        },
+        {
+          "reg": "\\d",
+          "message": "sdfds"
+        }
+      ]
+    },
+    {
+      "type": "input",
+      "key": "4",
+      "label": "表单4",
+      "name": "input4",
+      "options": {},
+      "rules": [
+        {
+          "required": true,
+          "message": "请输入"
+        },
+        {
+          "reg": "\\d",
+          "message": "sdfds"
+        }
+      ]
+    }
+  ]
+}
